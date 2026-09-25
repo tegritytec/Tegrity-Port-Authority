@@ -1,0 +1,18 @@
+{
+  "name": "tegrity-port-authority",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Tegrity Port Authority (TPA) — Maritime Port Operations, Deck/Engine Logbooks & Laytime Intelligence Module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "PORT=8080 node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

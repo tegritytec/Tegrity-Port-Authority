@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TegrityPort · Port Operations, Paperwork & Logbook Intelligence Module</title>
+  <meta name="description" content="TegrityPort is a dedicated port operations, documentation, deck/engine logbook, stoppage laytime treatment, and bunker ROB intelligence application module replicating section PORT from TegrityVoyageIQ.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="port.css">
+</head>
+<body>
+
+  <!-- HEADER & TOP NAVIGATION -->
+  <header class="port-header">
+    <div class="port-brand">
+      <div class="brand-icon">⚓</div>
+      <div class="brand-title">
+        <h1>
+          TegrityPort
+          <span class="badge-tag badge-cyan">v1.0 Enterprise Module</span>
+        </h1>
+        <div class="brand-sub">Port Operations, Deck/Engine Logbooks, Stoppage Laytime & Bunker Intelligence</div>
+      </div>
+    </div>
+
+    <!-- MAIN NAVIGATION TABS -->
+    <nav class="port-nav">
+      <button class="port-nav-btn active" data-tab="overview" onclick="window.TegrityPortApp.switchTab('overview')">
+        <span>📊</span> Overview
+      </button>
+      <button class="port-nav-btn" data-tab="documents" onclick="window.TegrityPortApp.switchTab('documents')">
+        <span>📁</span> Port Documents
+      </button>
+      <button class="port-nav-btn" data-tab="decklog" onclick="window.TegrityPortApp.switchTab('decklog')">
+        <span>📘</span> Deck Logbook
+      </button>
+      <button class="port-nav-btn" data-tab="enginelog" onclick="window.TegrityPortApp.switchTab('enginelog')">
+        <span>📗</span> Engine Logbook
+      </button>
+      <button class="port-nav-btn" data-tab="portlog" onclick="window.TegrityPortApp.switchTab('portlog')">
+        <span>⏱️</span> Port Log (Stoppages)
+      </button>
+      <button class="port-nav-btn" data-tab="pumpinglog" onclick="window.TegrityPortApp.switchTab('pumpinglog')">
+        <span>💧</span> Pumping Log
+      </button>
+      <button class="port-nav-btn" data-tab="bunkerreport" onclick="window.TegrityPortApp.switchTab('bunkerreport')">
+        <span>⛽</span> Bunker Report
+      </button>
+      <button class="port-nav-btn" data-tab="directory" onclick="window.TegrityPortApp.switchTab('directory')">
+        <span>⚓</span> Port Directory
+      </button>
+    </nav>
+
+    <!-- HEADER ACTIONS & BACK TO VOYAGEIQ -->
+    <div class="header-actions">
+      <a href="https://tegrity-voyageiq-web-1079602674268.us-central1.run.app" class="back-link">
+        <span>←</span> Back to TegrityVoyageIQ
+      </a>
+    </div>
+  </header>
+
+  <!-- SUB-BAR (ROLE SELECTOR & DATASET SYNC STATUS) -->
+  <div class="sub-bar">
+    <div class="role-bar">
+      <span class="role-label">Role Perspective:</span>
+      <div class="role-chips">
+        <div class="role-chip active" data-role="master" onclick="window.TegrityPortApp.setRole('master')">🧑‍✈️ Master</div>
+        <div class="role-chip" data-role="chief_officer" onclick="window.TegrityPortApp.setRole('chief_officer')">📘 Chief Officer</div>
+        <div class="role-chip" data-role="chief_engineer" onclick="window.TegrityPortApp.setRole('chief_engineer')">📗 Chief Engineer</div>
+        <div class="role-chip" data-role="port_agent" onclick="window.TegrityPortApp.setRole('port_agent')">📋 Port Agent</div>
+        <div class="role-chip" data-role="charterer_ops" onclick="window.TegrityPortApp.setRole('charterer_ops')">📜 Charterer Ops</div>
+        <div class="role-chip" data-role="laytime_analyst" onclick="window.TegrityPortApp.setRole('laytime_analyst')">⚖️ Laytime Analyst</div>
+        <div class="role-chip" data-role="port_authority" onclick="window.TegrityPortApp.setRole('port_authority')">⚓ Port Authority</div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:1rem">
+      <div class="filter-group">
+        <span style="font-size:0.75rem;color:var(--text-dim);font-weight:600">Voyage Scope:</span>
+        <select id="voyage-filter-select" class="form-select" onchange="window.TegrityPortApp.setVoyageFilter(this.value)">
+          <option value="ALL">All Voyages & Vessels</option>
+        </select>
+      </div>
+
+      <div class="sync-status" title="Connecting to shared TegrityVoyageIQ dataset">
+        <div class="sync-dot"></div>
+        <span>Synchronized with TegrityVoyageIQ</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN VIEW CONTAINERS -->
+  <main class="main-content">
+    <div id="view-overview" class="view-pane active"></div>
+    <div id="view-documents" class="view-pane"></div>
+    <div id="view-decklog" class="view-pane"></div>
+    <div id="view-enginelog" class="view-pane"></div>
+    <div id="view-portlog" class="view-pane"></div>
+    <div id="view-pumpinglog" class="view-pane"></div>
+    <div id="view-bunkerreport" class="view-pane"></div>
+    <div id="view-directory" class="view-pane"></div>
+  </main>
+
+  <!-- SCRIPT INCLUDES -->
+  <script src="./shared/voyage-core.js"></script>
+  <script src="./shared/rbac-core.js"></script>
+  <script src="port-app.js"></script>
+</body>
+</html>

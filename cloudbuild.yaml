@@ -1,0 +1,27 @@
+# Tegrity Port Authority (TPA) Cloud Build Config
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/voyageiq-${_ENV}/tegrityvoyageiq/tegrity-port-authority:${_TAG}'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/voyageiq-${_ENV}/tegrityvoyageiq/tegrity-port-authority:latest'
+      - '.'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - '--all-tags'
+      - 'us-central1-docker.pkg.dev/voyageiq-${_ENV}/tegrityvoyageiq/tegrity-port-authority'
+
+images:
+  - 'us-central1-docker.pkg.dev/voyageiq-${_ENV}/tegrityvoyageiq/tegrity-port-authority:${_TAG}'
+  - 'us-central1-docker.pkg.dev/voyageiq-${_ENV}/tegrityvoyageiq/tegrity-port-authority:latest'
+
+substitutions:
+  _ENV: dev
+  _TAG: latest
+
+options:
+  logging: CLOUD_LOGGING_ONLY
